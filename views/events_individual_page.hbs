@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/home.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body id="body">
+   {{> header }}
+    {{!-- <h1>hiee</h1> --}}
+    <form  method = "post">
+    {{!-- {{#each data}}
+    <h2>ii{{this.section}}</h2>
+    <button name="student_name"
+     type="submit" class="student_name" value={{this.name}}>{{this.name}}</button>
+
+
+ 
+ {{/each}} --}}
+ 
+{{!-- {{#each students_info}}
+<h1>{{this.name}}</h1>
+{{/each}}
+<h1> {{students_info}}</h1> --}}
+{{!-- {{> teacher_header}} --}}
+
+{{#each students_info}}
+    
+
+
+{{!-- <section id="side_bar" class="m-4 rounded">
+    <section class="w-100 p-4">
+      <div id="remove" class="w-100 "><img  align="right" src="https://cdn.onlinewebfonts.com/svg/img_403614.png" style="width: 28px; " ></div><br><br>
+      <h1>HIEEEEE!!</h1>
+    <br>
+    <!-- <a>Availability</a><br><br>
+    <a>Product type</a><br><br>
+    <a>Size</a><br> -->
+      <img src="../../uploads/teja1.jpg" style="width:200px; border-radius:100px; border-color:#e3f2fd;">
+      <br>
+      <br>
+      <p class="fw-bold">This is Teja(160121737104)<br> hope you all doing good..</p>
+    </section>
+  </section> --}}
+
+
+
+
+
+<section class="profile m-4 zoom">
+    <section class="row m-4 p-2">
+        <div class="user_info p-4 px-0 col text-center">
+          {{!-- <a class="mt-2" href="/uploads/{{this.uploadeddocument}}"><img class="mt-2 zoom" src="/uploads/{{this.uploadeddocument}}" alt="this is an image" width="110px" ></img></a> --}}
+          <img class="mt-2  m-4 zoom" src="/uploads/profile_png.png" alt="this is an image"  style="background-color: #e3f2fd ; border-radius:200px; width:180px;  " >
+          <h4 class="m-2 me-0 fs-4 ">{{this.name}}</h4>
+        </div>
+    <div class="col m-4  text-capitalize p-1"  style="font-size:small;">
+      <p >Roll No :  {{this.rollno}}</p>
+          <p class="mail_id fs-5" ><a class="p-2"  href='mailto:{{this.email}}' style="color:white; text-decoration: none; "><i class="fa fa-envelope" aria-hidden="true"></i> :  {{this.email}}</a></p>
+          <div class="row mb-2">
+            <p class="col m-0">section :  {{this.sec}}</p>
+            <p class="col m-0">Sem :  {{this.current_sem}}</p>
+            <p id="students_total_marks_{{@index}}">total marks:</p>
+          </div>
+          <hr>
+          <div class="w-80 row  m-2 fw-bold" style=" color:#283751;  background:none; display:none;">
+          <button name="student_name"
+     type="submit" class="student_name p-3 col-8 fw-bold zoom" value={{this.name}} style="border:none; border-radius:0px; background-color:#e3f2fd; color:#283751; border-radius:20px;">View unverified files</button>
+          <div id="students_total_noof_unverified_documents_{{@index}}" class="col-3 text-center ms-2 p-3 " style="background-color:#e3f2fd; border-radius:20px;"></div>
+          </div>
+          {{!-- <p>Activity points :  {{total_points}}</p> --}}
+          
+        {{!-- <h4>Mentor details</h4>
+          <p>name :  {{student_mentor.name}}</p>
+            <p class="me-4"><a  href='mailto:{{student_mentor.email}}' style="color:white; text-decoration: none; "><i class="fa fa-envelope" aria-hidden="true"></i> :  {{student_mentor.email}}</a> </p>
+            <p><a  href='tel:{{student_mentor.mobile_no}}' style="color:white; text-decoration: none; "><i class="fa fa-phone" aria-hidden="true"></i> :  {{student_mentor.mobile_no}}</a></p> --}}
+          
+    </div>
+   {{!-- {{/each}}      --}}
+    <section class="graph_section col fs-3">
+        <div class="ms-lg-4 mt-4 mb-4 me-4 " >
+          <ul><li><h5 class="mb-4 text-capitalize">Cotegory-wise marks</h5></li></ul>
+            <canvas class="chart" id="myChartDoughnut{{@index}}" style=" height:200px; width:240px;"></canvas>
+        </div>
+        <div class="m-4 ">
+          <ul><li><h5 class="mb-4 text-capitalize">Sem-wise marks obtained</h5></li></ul>
+            <canvas class="chart" id="myChartLine{{@index}}"  style=" height:180px; width:280px"></canvas>
+          
+        </div>
+          
+    </section>
+     
+    </section>   
+</section>
+
+{{!-- <div class="chart">
+  <canvas id="myChartDoughnut{{@index}}"></canvas>
+</div>
+<div class="chart">
+  <canvas id="myChartLine{{@index}}"></canvas>
+</div> --}}
+{{!-- <div id="js">[1,2,3,4,5]</div> --}}
+{{!-- <div>
+  <canvas class="myyChart">1...............................</canvas>
+</div> --}}
+{{!-- <h1>hehe!!</h1> --}}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{{/each}}
+
+
+
+
+<section class="dont_display" style="display:none;">
+<div id="students_total_marks_length">{{students_total_marks.length}}</div>
+{{#each students_total_marks}}
+ <div id="dup_students_total_marks_{{@index}}">{{this}}</div>
+{{/each}}
+{{#each students_category_wise_marks}}
+ <div id="dup_students_category_wise_marks_{{@index}}">{{this}}</div>
+{{/each}}
+{{#each students_sem_wise_marks}}
+ <div id="dup_students_sem_wise_marks_{{@index}}">{{this}}</div>
+{{/each}}
+{{#each students_total_noof_unverified_documents}}
+ <div id="dup_students_total_noof_unverified_documents_{{@index}}">{{this}}</div>
+{{/each}}
+</section>
+
+</form>
+
+<script>
+ /* const ctx = document.getElementById("myChart1");
+  console.log("hiee");
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });*/
+
+
+  /*var x=document.getElementById("js").textContent;
+  console.log(x[2],x[3]);*/
+
+  console.log("students_total_marks_length"+Number(document.getElementById("students_total_marks_length").textContent));
+  var noofstudents=Number(document.getElementById("students_total_marks_length").textContent);
+  for(var i=0;i<noofstudents;i++){
+    document.getElementById("students_total_marks_"+`${i}`).textContent="total marks: "+document.getElementById("dup_students_total_marks_"+`${i}`).textContent;
+    document.getElementById("students_total_noof_unverified_documents_"+`${i}`).textContent=document.getElementById("dup_students_total_noof_unverified_documents_"+`${i}`).textContent;
+    var student_category_wise_marks=document.getElementById("dup_students_category_wise_marks_"+`${i}`).textContent.split(',');
+    for(var j=0;j<student_category_wise_marks.length;j++){
+      student_category_wise_marks[j]=parseFloat(student_category_wise_marks[j]);
+    }
+    
+    console.log(student_category_wise_marks);
+    console.log(document.getElementById("dup_students_category_wise_marks_"+`${i}`).textContent);
+    
+
+
+    var ctx1 = document.getElementById("myChartDoughnut"+`${i}`);
+  console.log("hiee");
+  new Chart(ctx1, {
+    type:"doughnut",
+    data: {
+      labels: ['Services', 'Education', 'Co-Cirricular'],
+      datasets: [{
+        label: '# of category marks',
+        data:[student_category_wise_marks[1],student_category_wise_marks[2],student_category_wise_marks[3]],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+
+
+
+
+
+ var student_sem_wise_marks=document.getElementById("dup_students_sem_wise_marks_"+`${i}`).textContent.split(',');
+    for(var j=0;j<student_sem_wise_marks.length;j++){
+      student_sem_wise_marks[j]=parseFloat(student_sem_wise_marks[j]);
+    }
+    
+   console.log(student_sem_wise_marks);
+   console.log(document.getElementById("dup_students_sem_wise_marks_"+`${i}`).textContent);
+    
+
+
+  var ctx2 = document.getElementById("myChartLine"+`${i}`);
+  console.log("hiee");
+  new Chart(ctx2, {
+    type:"line",
+    data: {
+      labels: ['I', 'II', 'III',"IV","V","VI","VII","VIII"],
+      datasets: [{
+        label: '# of sem marks',
+        data:[student_sem_wise_marks[1],student_sem_wise_marks[2],student_sem_wise_marks[3],student_sem_wise_marks[4],student_sem_wise_marks[5],student_sem_wise_marks[6],student_sem_wise_marks[7],student_sem_wise_marks[8]],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+
+  }
+  
+</script>
+
+ <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://kit.fontawesome.com/ac0eb1b1c0.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+
+</html>

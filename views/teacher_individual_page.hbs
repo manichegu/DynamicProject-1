@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/css/teacher_individual_page.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+</head>
+<body id="body" >
+    {{> teacher_header}}
+    {{!-- {{> header}} --}}
+                 <section class="login-box row m-0 p-4 pe-0 " >
+    {{#each data.section}}
+    
+    {{!-- <h1>{{this.sem}}</h1> --}}
+        {{#each this.category}}
+               {{#each this.sub_category}} 
+               
+                    {{#if verificationstatus}}
+                    {{else}}
+                    <section class=" col-lg-6 p-4">
+                        <section class="unverified_cards  m-0 p-4 zoom">
+                       <form method="post">
+                        <h6 class="m-2 text-capitalize" style=" color:orange; width:100%; overflow-x:hidden; outline:none;">sem:<input  value={{../../this.sem}} name="sem" style="background:transparent; color:aquamarine; border:none; width:80%; outline:none;" readonly><br></h6>
+                        {{!-- <h1>{{data.section.sem}}</h1> --}}
+                        
+                        <div class="m-2 text-capitalize fs-6" style="width:100%; overflow-x:hidden; outline:none;">main category:<input class="text-capitalize"  value={{../this.main_category}} name="main_category" style="background:transparent; color:#fff; border:none; width:80%; outline:none;" readonly><br></div>
+                        <div class="no_scrlbar  m-2 text-capitalize fs-6 " style="width:100%; overflow-x:scroll; ">sub category: <input class="m-1 text-capitalize "  value="{{this.title}}" name="sub_category" style="background:transparent; outline:none; color:#fff; border:none; font-size:large"  readonly><br></div>
+                        
+                        <div class="row m-1">
+                            <div class="col  m-0">
+                                <div class="m-0 text-capitalize fs-6">document uploaded    :    <a class="mt-2" href="/uploads/{{this.uploadeddocument}}"><img class="mt-2 zoom" src="/uploads/{{this.uploadeddocument}}" alt="this is an image" width="110px" ></img></a><br></div>
+                            </div>
+                            <div class="col m-0">
+                                <div class="m-0 text-capitalize fs-6">Allot Marks:<br><input class="zoom p-3 mt-2" type="number" max={{this.max_marks}} min=0 name="marksalloted" placeholder="enter the marks" style="width: 60%; color:#fff; background:transparent; border-radius:5px; border-color: #fff; outline:none;" required> </div><br>
+                            </div>
+                        </div>
+                        <textarea rows="4" cols="40" type="text" class="no_scrlbar m-2 me-4 zoom" placeholder="enter the feedback" name="feedback" style="width: 82%; background:transparent; color:#fff; border-color: #fff; border-radius:5px; outline:none; "></textarea><br>
+                        <div class="row">
+            <div class="col-lg-2 m-0"></div>
+            <div class="col-lg-2 m-0">
+              <button type="submit" class="border-0 text-center" href="#">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              Submit
+            </button>
+            </div>
+            <div class="col-lg-2 m-0"></div>
+          </div>
+                        </form> 
+                        </section>  
+                        </section>
+                    {{/if}}
+                    {{!-- <hr> --}}
+                
+                {{!-- <h4>{{this.title}}</h4> --}}
+                {{/each}}
+                {{!-- <h4>{{this}}</h4> --}}
+        {{/each}}
+        {{!-- <h2>{{this}}</h2> --}}
+   
+    {{/each}}
+</section>
+    {{!-- {{#each data}}
+        <h2>{{this}}</h2>
+    {{/each}} --}}
+    {{!-- <p>{{data.section}}</p> --}}
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.js"></script>
+    <script src="https://kit.fontawesome.com/ac0eb1b1c0.js" crossorigin="anonymous"></script>
+</body>
+</html>

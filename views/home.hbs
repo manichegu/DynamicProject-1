@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/css/home.css">
+    {{!-- <style>
+      #services{
+    background-color: aqua;
+}
+    </style> --}}
+    {{!-- <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> --}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body class="m-0">
+  {{> header }}
+  {{!-- {{check_student}} --}}
+{{!--<div id="main_categories">
+   <section id="services" class="zoom text-light bg-dark mb-1 p-4 position-relative" >Services<img id="services_btn" class="zoomm position-absolute  end-0 m-2" src="https://www.freeiconspng.com/uploads/white-down-arrow-png-2.png" style="width:15px; height: 15px; align-items: flex-end;"></img></section>
+  <section id="education" class="zoom text-light bg-dark mb-1 p-4 position-relative" >Education<img id="education_btn" class="zoomm position-absolute  end-0 m-2" src="https://www.freeiconspng.com/uploads/white-down-arrow-png-2.png" style="width:15px; height: 15px; align-items: flex-end;"></img></section>
+  <section id="co_cirricular" class="zoom text-light bg-dark mb-1 p-4 position-relative" >Co-cirricular<img id="co_cirricular_btn" class="zoomm position-absolute  end-0 m-2" src="https://www.freeiconspng.com/uploads/white-down-arrow-png-2.png" style="width:15px; height: 15px; align-items: flex-end;"></img></section>
+  </div> --}}
+{{!-- <h1 class="zoom">hiee</h1> --}}
+
+<section id="side_bar" class="m-4 rounded">
+    <section class="w-100 p-4">
+      <div id="remove" class="w-100 "><img  align="right" src="https://cdn.onlinewebfonts.com/svg/img_403614.png" style="width: 28px; " ></div><br><br>
+      <h1>HIEEEEE!!</h1>
+    <br>
+    <!-- <a>Availability</a><br><br>
+    <a>Product type</a><br><br>
+    <a>Size</a><br> -->
+      <img src="../../uploads/teja1.jpg" style="width:200px; border-radius:100px; border-color:#e3f2fd;">
+      <br>
+      <br>
+      <p class="fw-bold">This is Teja(160121737104)<br> hope you all doing good..</p>
+    </section>
+  </section>
+
+
+
+
+
+<section class="profile m-4 zoom">
+    <section class="row m-4 p-2">
+        <div class="user_info p-4 px-0 col text-center">
+          {{!-- <a class="mt-2" href="/uploads/{{this.uploadeddocument}}"><img class="mt-2 zoom" src="/uploads/{{this.uploadeddocument}}" alt="this is an image" width="110px" ></img></a> --}}
+          <img class="mt-2  m-4 zoom" src="/uploads/profile_png.png" alt="this is an image"  style="background-color: #e3f2fd ; border-radius:200px; width:180px; " >
+          <h4 class="m-2 me-0 fs-3 ">{{check_student.name}}</h4>
+        </div>
+    <div class="col m-4  text-capitalize" style="font-size:small;">
+      <p >Roll No :  {{check_student.rollno}}</p>
+          <p class="mail_id fs-5 " ><a  href='mailto:{{check_student.email}}' style="color:white; text-decoration: none; "><i class="fa fa-envelope" aria-hidden="true"></i> :  {{check_student.email}}</a></p>
+          <div class="row mb-2">
+            <p class="col m-0">section :  {{check_student.sec}}</p>
+            <p class="col m-0">Sem :  {{check_student.current_sem}}</p>
+            
+          </div>
+          
+          <p>Activity points :  {{total_points}}</p>
+          <hr>
+        <h5>Mentor details</h5>
+          <p>name :  {{student_mentor.name}}</p>
+          
+            <p class="me-4"><a  href='mailto:{{student_mentor.email}}' style="color:white; text-decoration: none; "><i class="fa fa-envelope" aria-hidden="true"></i> :  {{student_mentor.email}}</a> </p>
+            <p><a  href='tel:{{student_mentor.mobile_no}}' style="color:white; text-decoration: none; "><i class="fa fa-phone" aria-hidden="true"></i> :  {{student_mentor.mobile_no}}</a></p>
+          
+    </div>
+   {{!-- {{/each}}      --}}
+      <section class="graph_section col fs-3" >
+        <div class="ms-lg-4 mt-4 mb-4 me-4  " >
+          <ul><li><h5 class="mb-4 text-capitalize">Cotegory-wise marks</h5></li></ul>
+            <canvas class="chart" id="myChart1" style=" height:200px; width:240px;"></canvas>
+        </div>
+        {{!-- <br> --}}
+        <div class="m-4 ">
+          <ul><li><h5 class="mb-4 text-capitalize">Sem-wise marks obtained</h5></li></ul>
+            <canvas class="chart" id="myChart2"  style=" height:180px; width:280px"></canvas>
+          
+        </div>
+          
+    </section>
+     
+    </section>   
+</section>
+
+<form method="post" class="m-0 p-0" >
+  <section class="all_categories_section row p-4 m-0">
+  {{#each data.maincategories_array}}
+    <section class="main_category_section category col border border-dark m-2 ms-0 ps-4 pe-4">
+  <h4  class="main_category  p-2  w-100 text-center  text-uppercase" >{{this.maincategory_name}}</h4>
+  <ul>
+  {{!-- <p>{{this.related_subcategories_array}}</p> --}}
+     {{#each this.related_subcategories_array}}
+
+        {{!-- <p class="max_marks" name="max_marks" >{{this.max_marks}}</p> --}}
+       <li style="font-size:small;"><button class="sub_category_name " name="sub_category_name" value={{this.number}}>{{this.sub_category_name}}</button></li> 
+      {{/each}}
+      </ul>
+  </section>
+  {{/each}}
+  </section>
+</form>
+<br>
+<br>
+{{!-- <script src="/static/js/home.js"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.0/dist/chart.umd.min.js"></script>
+    <script src="https://kit.fontawesome.com/ac0eb1b1c0.js" crossorigin="anonymous"></script>
+    <script>
+      const myChart1 = document.getElementById('myChart1');
+{{!-- var ss={{sem_wise_marks}}; --}}
+{{!-- var cs={{category_wise_marks}}; --}}
+
+  new Chart(myChart1, {
+    //type: 'bar',
+    // type:"line",
+    // type:"radar",
+    // type:"polarArea",
+    type:"doughnut",
+    data: {
+      labels: ['Services', 'Education', 'Co-Cirricular'],
+      datasets: [{
+        label: '# of category marks',
+        data: [{{category_wise_marks.[1]}}, {{category_wise_marks.[2]}}, {{category_wise_marks.[3]}}],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+
+{{!-- sem_wise_marks:sem_wise_marks,category_wise_marks:category_wise_marks,this:this --}}
+   const myChart2 = document.getElementById('myChart2');
+
+  new Chart(myChart2, {
+    //type: 'bar',
+     type:"line",
+    // type:"radar",
+    // type:"polarArea",
+    //type:"doughnut",
+    data: {
+      labels: ['I', 'II', 'III',"IV","V","VI","VII","VIII"],
+      datasets: [{
+        label: '# of sem marks',
+        data: [{{sem_wise_marks.[1]}},{{sem_wise_marks.[2]}},{{sem_wise_marks.[3]}},{{sem_wise_marks.[4]}},{{sem_wise_marks.[5]}},{{sem_wise_marks.[6]}},{{sem_wise_marks.[7]}},{{sem_wise_marks.[8]}}],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+document.getElementById("logo").addEventListener('click', function (evt) {
+    if (evt.detail === 4) {
+        {{!-- alert(`${<h1>triple click!</h1>}`); --}}
+  side_bar.classList.add("active");
+    }
+});
+
+document.getElementById("remove").addEventListener("click",fn2);
+function fn2(){
+  side_bar.classList.remove("active");
+}
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+<script src="https://kit.fontawesome.com/ac0eb1b1c0.js" crossorigin="anonymous"></script>
+</html>

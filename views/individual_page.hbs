@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{!-- <title>Document</title> --}}
+    <link rel="stylesheet" href="/static/css/individual_page.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body id="body" class="m-0">
+{{> header}}
+<br>
+<section class="row m-0">
+  <section class="col-lg-3"></section>
+    <section class="left_section col-lg-6" >
+      <div class="login-box m-4  p-2 py-0" style="border-radius:40px;">
+      <section class=" m-2 p-lg-4 py-0" >
+      <form method="post"  enctype="multipart/form-data" class="m-2">
+       <h5 id="maincategory" class="main_category m-0 p-3 w-100 text-center fs-4 text-uppercase fw-bold" style=" color: #243b55; background-color:#e3f2fd ;">{{main_category}}</h5>
+          {{!-- <div class="row m-4"><div class="col-4 m-2"></div><h1 class="col p-1 ">{{main_category}}</button><div class="col-5 m-0"></div></div> --}}
+           <h4 class="m-4 mb-2 fs-6"> SUB CATEGORY:</h4>
+         <h4 id="subcategory" class="m-4 mt-2 fs-6">{{student_selected_sub_category}}</h4>
+         
+          {{!-- <h4 class="m-4 fs-6">MAXIMUM MARKS:{{max_marks}}</h4> --}}
+
+           <h4 class="m-4 mb-2 fs-6">MAXIMUM MARKS:</h4>
+         <h4 class="m-4  mt-2 fs-6">{{max_marks}}</h4>
+          
+          {{!-- <p>Enter the SEM number that you wanted to submit the document in</p> --}}
+          <p  class="m-4 mb-0 fs-6" >SEM:  <input id="sem" class="m-4" type="number" name="sem" placeholder="sem" max={{check_student.current_sem}} min="1" class=" m-0 px-2 py-1 rounded" style="background: transparent; color:#fff;" required><br></p>
+          <p class="note_sem mt-0 m-4   fs-6" style="color:#213d51f7;">NOTE: SEM number may or may not be the current sem you are in</p>
+          <p class="file m-4 mt-3 m-b-3 fs-6">FILE: <label for="upload_img"><img class="m-2 me-0 " src="https://www.pngall.com/wp-content/uploads/2/Upload-PNG-HD-Image.png" style="width:40px; "> </label><input class="m-2" id="upload_img" name="image" type="file" placeholder="img" class="m-2  p-2"  required style="background: transparent; color:rgba(255, 255, 255, 0.593)"></p>
+          {{!-- <p class="m-2 mt-3 m-b-3">VERIFICATION STATUS:  <input type="text"  value="NOT verified" disabled class="text-danger text-center " style="background: transparent; "></p><br> --}}
+        {{!-- <div class="row m-0"><div class="col-5 m-0"></div><button class="submit_button col p-1 " type="submit">Submit!!</button><div class="col-5 m-0"></div></div> --}}
+        {{!-- {{#each student.section}}
+        <p>Sem:{{this.sem}}</p>
+        {{/each}} --}}
+          <div class="row ">
+            <div class=" col-lg-4 m-0 me-4"></div>
+            <div class="col-lg-2 ms-4">
+              <button onClick="fn()"  class="border-0 text-center fs-6 mb-4" href="#">
+              {{!-- <button type="submit" class="border-0 text-center" href="#"> --}}
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              Submit
+            </button>
+            </div>
+            <div class="col-lg-5 m-0"></div>
+          </div>
+          {{!-- <button type="submit" class="border-0 text-center" href="#">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Submit
+          </button> --}}
+    </form>
+    </section>
+</div>
+    </section>
+   
+  {{!-- <section class="col-3">{{check_student}}</section> --}}
+</section>
+
+<section  style="display:none;">
+{{#each check_student.section}}
+<p id="sem{{this.sem}}">{{this.sem}}</p>
+{{#each this.category}}
+<p id="sem{{../this.sem}}maincategory{{this.main_category}}">{{this.main_category}}</p>
+{{#each this.sub_category}}
+<p id="sem{{../../this.sem}}maincategory{{../this.main_category}}subcategory{{this.title}}">{{this.title}}</p>
+<p id="sem{{../../this.sem}}maincategory{{../this.main_category}}subcategory{{this.title}}verificationstatus">{{this.verificationstatus}}</p>
+{{/each}}
+{{/each}}
+{{/each}}
+</section>
+
+ <script>
+   
+        sem.addEventListener("change",()=>{
+          var sem=document.getElementById("sem");
+          var maincategory=document.getElementById("maincategory");
+          var subcategory=document.getElementById("subcategory");
+          console.log(sem.value);
+          if(document.getElementById("sem"+sem.value)!=null){
+            console.log("foundsem");
+            if(document.getElementById("sem"+sem.value+"maincategory"+maincategory.textContent)!=null){
+              console.log("foundmaincategory");
+              if(document.getElementById("sem"+sem.value+"maincategory"+maincategory.textContent+"subcategory"+subcategory.textContent)!=null){
+                if(document.getElementById("sem"+sem.value+"maincategory"+maincategory.textContent+"subcategory"+subcategory.textContent+"verificationstatus").textContent=="true")
+                {
+                  console.log("foundverified");
+                  alert("This document has already been evaluated , cannot submit this document");
+                  document.location.href="individual_page";
+                }
+                else if(document.getElementById("sem"+sem.value+"maincategory"+maincategory.textContent+"subcategory"+subcategory.textContent+"verificationstatus").textContent=="false"){
+                  console.log("foundnotverified");
+                  var result=confirm("This document has already been submitted , submitting this document will overwrites the prevoiusly submitted document");
+    
+                  if(result==false){
+                    document.location.href="individual_page";
+                  }
+                }
+                
+              }
+            }
+          }
+        });
+      function fn(){
+       
+
+
+
+        var result=confirm("are you sure to upload this document");
+    
+         if(result==false){
+          event.preventDefault();
+          console.log("hiee");
+          console.log(check_student);
+        }
+      }
+      
+    </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.js"></script>
+   <script src="https://kit.fontawesome.com/ac0eb1b1c0.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
